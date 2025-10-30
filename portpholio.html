@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thomas Rens — Portfolio</title>
+  <meta name="description" content="Thomas Rens | Computer Science Student | AI & ML" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1: #0f1724;
+      --bg2: #07263f;
+      --accent1: #00c6ff;
+      --accent2: #0072ff;
+      --muted: #9aa7b2;
+      --card: rgba(255,255,255,0.03);
+      --glass: rgba(255,255,255,0.04);
+      --glass-strong: rgba(255,255,255,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Layout */
+    .container{
+      max-width:1000px;
+      margin:0 auto;
+      padding:28px;
+    }
+
+    header{
+      display:flex;
+      gap:24px;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 0;
+    }
+
+    .brand{
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
+
+    .logo{
+      width:52px;height:52px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:grid;place-items:center;font-weight:800;color:#062433;font-size:18px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+    }
+
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      margin-left:12px;
+      font-weight:600;
+    }
+    nav a:hover{color:#fff}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:28px;
+      align-items:center;
+      margin-top:12px;
+    }
+
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding:28px;
+      border-radius:14px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .title{
+      font-size: clamp(20px, 3.6vw, 34px);
+      line-height:1.05;
+      font-weight:700;
+      color: #f2fbff;
+    }
+    .subtitle{
+      margin-top:10px;color:var(--muted);max-width:70ch;
+    }
+
+    .cta-row{
+      margin-top:18px;display:flex;gap:12px;align-items:center;
+    }
+    .btn{
+      padding:10px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#03242f;
+      box-shadow:0 8px 20px rgba(2,10,40,0.45);
+      text-decoration:none;
+    }
+    .btn.secondary{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);
+    }
+
+    /* Profile column */
+    .profile{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+      padding:22px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .photo-wrap{
+      width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+      display:grid;place-items:center;position:relative;
+      transform-origin:center;
+      transition:transform 0.6s cubic-bezier(.2,.9,.2,1);
+    }
+    .photo-wrap:hover{transform:translateY(-6px) scale(1.02)}
+    .photo{
+      width:180px;height:180px;border-radius:50%;object-fit:cover;border:6px solid rgba(255,255,255,0.06);
+      box-shadow:0 10px 30px rgba(2,10,40,0.7);
+      transition:transform .4s;
+    }
+    .photo-wrap:hover .photo{transform:translateY(-6px) rotate(-1.5deg)}
+
+    .pulse-ring{
+      position:absolute; inset: -18px; border-radius:50%;
+      background: radial-gradient(circle at 30% 20%, rgba(0,198,255,0.06), transparent 20%),
+                  radial-gradient(circle at 80% 80%, rgba(0,114,255,0.05), transparent 20%);
+      filter: blur(18px);
+      animation: floaty 6s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes floaty{
+      0%{transform:translateY(0) rotate(0)}
+      50%{transform:translateY(-8px) rotate(2deg)}
+      100%{transform:translateY(0) rotate(0)}
+    }
+
+    .profile h3{margin:0;font-size:18px;font-weight:800}
+    .profile p{color:var(--muted);text-align:center;margin:0;padding:0 8px}
+
+    .links a{display:inline-block;margin:8px;padding:8px 12px;border-radius:10px;font-weight:700;text-decoration:none;color:var(--muted);
+      background:var(--glass);border:1px solid rgba(255,255,255,0.02)}
+    .links a:hover{color:#fff;transform:translateY(-4px)}
+
+    /* Sections */
+    section { margin-top:28px; }
+    h2.section-title{
+      font-size:18px;color:#eaf6ff;margin-bottom:12px;font-weight:800;display:inline-block;border-bottom:2px solid rgba(255,255,255,0.04);padding-bottom:6px;
+    }
+
+    /* Skills */
+    .skills{
+      display:flex;flex-wrap:wrap;gap:10px;
+    }
+    .skill{
+      padding:10px 14px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.03);
+      color:#dff7ff;font-weight:700;font-size:13px;
+      transform-origin:center;
+      transition:transform .18s;
+    }
+    .skill:hover{transform:translateY(-6px) scale(1.03)}
+
+    /* Projects */
+    .projects-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;
+    }
+    .project{
+      background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+      transition:transform .25s, box-shadow .25s;
+    }
+    .project:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+    .project h3{margin:0 0 8px 0}
+    .project p{color:var(--muted);font-size:14px;margin:0}
+
+    /* Contact / Footer */
+    .contact-grid{display:flex;flex-direction:column;gap:8px}
+    .contact-grid a{color:#dff7ff;text-decoration:none;font-weight:700}
+    footer{margin-top:30px;padding:22px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Scroll reveal classes */
+    .reveal{opacity:0;transform:translateY(18px);transition:all .8s cubic-bezier(.16,.8,.2,1)}
+    .reveal.visible{opacity:1;transform:none;}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns: 1fr; padding-bottom:6px}
+      .profile{order:-1}
+      .photo-wrap{width:160px;height:160px}
+      .photo{width:140px;height:140px}
+    }
+
+    @media (max-width:520px){
+      .container{padding:18px}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">TR</div>
+        <div>
+          <div style="font-weight:800">Thomas Rens</div>
+          <div style="font-size:12px;color:var(--muted)">Computer Science · AI & Machine Learning</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-card reveal">
+        <div class="title">Hi — I'm Thomas Rens</div>
+        <div class="subtitle">
+          I am a dedicated Computer Science student with a passion for AI and Machine Learning.
+          As a Student Union Council Member and NSS Executive, I’ve organized college events and large inter-college festivals,
+          coordinating teams and managing logistics. I enjoy applying Python, Data Science, NLP and Deep Learning to real problems.
+        </div>
+
+        <div class="cta-row">
+          <a class="btn" id="download-resume" href="resume.pdf" download>⬇️ Download Resume</a>
+          <a class="btn secondary" href="mailto:thomas.rens04@gmail.com">📧 Email me</a>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:13px;">
+          <strong>Looking for:</strong> Internships & project collaborations in AI / ML.
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <aside class="profile reveal">
+        <div class="photo-wrap">
+          <div class="pulse-ring"></div>
+          <!-- Use the exact filename you gave; put the file in same folder -->
+          <img class="photo" src="WhatsApp Image 2025-10-07 at 5.20.44 PM.jpeg" alt="Thomas Rens">
+        </div>
+
+        <h3>Thomas Rens</h3>
+        <p>CS Student · AI & Machine Learning · Student Union Council Member · NSS Executive</p>
+
+        <div class="links">
+          <a href="https://www.linkedin.com/in/thomas-rens-b48112313" target="_blank">LinkedIn</a>
+          <a href="https://github.com/Thomasrens" target="_blank">GitHub</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <h2 class="section-title">About Me</h2>
+      <p style="color:var(--muted);margin-top:8px">
+        I combine technical knowledge in Python, Data Science, NLP and Deep Learning with leadership and event-management experience.
+        I’ve coordinated large teams for college festivals and community events — which taught me planning, communication and logistics skills
+        that complement my technical training.
+      </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills" style="margin-top:10px">
+        <div class="skill">Python</div>
+        <div class="skill">Java</div>
+        <div class="skill">Machine Learning</div>
+        <div class="skill">Deep Learning</div>
+        <div class="skill">NLP</div>
+        <div class="skill">Data Science</div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <h2 class="section-title">Projects</h2>
+      <div style="color:var(--muted);margin-bottom:12px">You can add projects here. I added placeholders you can replace later.</div>
+
+      <div class="projects-grid">
+        <div class="project">
+          <h3>Project — Coming Soon</h3>
+          <p>A brief description about the project goes here. Add tools, link to GitHub and screenshots.</p>
+        </div>
+
+        <div class="project">
+          <h3>Project — Coming Soon</h3>
+          <p>Describe what the project does and your contribution (ex: data cleaning, modeling, frontend).</p>
+        </div>
+
+        <div class="project">
+          <h3>Project — Coming Soon</h3>
+          <p>Replace these placeholders when you have projects to showcase.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid" style="margin-top:10px">
+        <a href="mailto:thomas.rens04@gmail.com">📧 thomas.rens04@gmail.com</a>
+        <a href="https://www.linkedin.com/in/thomas-rens-b48112313" target="_blank">💼 LinkedIn</a>
+        <a href="https://github.com/Thomasrens" target="_blank">💻 GitHub</a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Thomas Rens — Built with ❤️ · Hosted on GitHub Pages
+    </footer>
+  </div>
+
+  <script>
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Scroll reveal using IntersectionObserver
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {threshold: 0.12});
+
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // Resume download fallback: alert if resume not found (optional)
+    const resumeBtn = document.getElementById('download-resume');
+    resumeBtn.addEventListener('click', (e) => {
+      // If resume file doesn't exist, the browser will 404 — offer friendly note:
+      // Do nothing here; you can replace the href with your real filename (e.g., "Thomas_Rens_Resume.pdf")
+      // Optional: you could link directly to a Google Drive / Google Docs share link instead.
+    });
+  </script>
+</body>
+</html>
